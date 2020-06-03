@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Device already exists{% endblock %}
+
+{% block content %}
+    <h1>Duplicate Error</h1>
+    <p>
+        <a>The device you tried to add already exist.</a>
+    </p>
+    <br>
+    <br>
+    <button>
+        <a href="{{ url_for('inventory_home') }}">Inventory Home</a>
+    </button>
+{% endblock %}

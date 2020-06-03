@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Devices</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            color: cornflowerblue;
+            background-color: floralwhite;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <table style="width:70%">
+      <!-- table header -->
+      {% if data %}
+      <tr>
+         {% for key in data[0] %}
+         <th> {{ key }} </th>
+         {% endfor %}
+      </tr>
+      {% endif %}
+
+      <!-- table rows -->
+      {% for dict_item in data %}
+      <tr>
+        {% for value in dict_item.values() %}
+          <td><div class="text"><pre>{{ value }}</pre></div></td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
+    <button>
+        <a href="{{ url_for('static', filename='report.csv') }}">Download as CSV</a>
+    </button>
+    <br>
+    <br>
+    <button>
+        <a href="{{ url_for('inventory_home') }}">Inventory Home</a>
+    </button>
+</body>

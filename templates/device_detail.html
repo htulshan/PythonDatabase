@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Device Details{% endblock %}
+
+{% block content %}
+    <h1>Device Details</h1>
+    <p>
+        <a>IP address: {{ data.address }}</a> <br>
+        <a>Name: {{ data.name }}</a> <br>
+        <a>Device Type: {{ data.device_type }}</a> <br>
+        <a>Groups: {{ data.group }}</a>
+    </p>
+    <button>
+        <a href="{{ url_for('del_device', address=data.address) }}">Delete</a>
+    </button>
+    <button>
+        <a href="{{ url_for('update_device', address=data.address) }}">Update</a>
+    </button>
+    <br>
+    <br>
+    <button>
+        <a href="{{ url_for('inventory_home') }}">Inventory Home</a>
+    </button>
+{% endblock %}

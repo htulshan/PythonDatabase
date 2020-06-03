@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Device{% endblock %}
+
+{% block content %}
+    <h1>Please fill all the fields.</h1>
+    <form method="post">
+        <p>
+            IP:
+            <input type="text" name="address">
+        </p>
+        <p>
+            Name:
+            <input type="text" name="name">
+        </p>
+        <p>
+            Device Type:
+            <select name="device_type">
+                <option value="cisco_ios">Cisco IOS SSH</option>
+                <option value="cisco_ios_telnet">Cisco IOS Telnet</option>
+            </select>
+        </p>
+        <p>
+            Group:
+            <select name="group">
+                <option value="switch">Switch</option>
+                <option value="router">Router</option>
+                <option value="both">Both</option>
+            </select>
+        </p>
+        <button type="submit">Create</button>
+    </form>
+    <br>
+    <br>
+    <button>
+        <a href="{{ url_for('inventory_home') }}">Inventory Home</a>
+    </button>
+{% endblock %}

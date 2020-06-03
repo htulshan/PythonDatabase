@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Inventory Home{% endblock %}
+
+{% block content %}
+    <h1>This is the home page for all inventory related operations</h1>
+    <p>
+        <h2> Please select the operation you want to perform </h2>
+        <ul>
+            <li>
+                <a href="{{ url_for('show_all_devices') }}">Show All Devices</a>
+            </li>
+            <li>
+                <a href="{{ url_for('show_device') }}">Show Device</a>
+            </li>
+            <li>
+                <a href="{{ url_for('add_device') }}">Add Device</a>
+            </li>
+        </ul>
+    </p>
+{% endblock %}

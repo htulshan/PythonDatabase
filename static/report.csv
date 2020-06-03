@@ -1,0 +1,4 @@
+"address","name","device_type","group"
+"1.1.1.1","DNS1","cisco_ios","switch"
+"2.2.2.2","DNS5","cisco_ios_telnet","router"
+"3.3.3.3","DNS3","cisco_ios","switch"
