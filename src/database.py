@@ -4,29 +4,43 @@
     Python module to interact with database.
 """
 import sqlalchemy as db
+import time
 
 
 class DataBase:
 
     def __init__(self, db_url):
-        self.engine = db.create_engine(db_url, echo=True)
-        self.metadata = db.MetaData(self.engine)
 
-        self.inventory = db.Table(
-            'inventory',
-            self.metadata,
-            db.Column('address', db.String(255), primary_key=True),
-            db.Column('name', db.String(255), nullable=False),
-            db.Column('device_type', db.String(255), nullable=False),
-            db.Column('group', db.String(255), nullable=False),
-        )
+        for i in range(10):
+            try:
+                self.engine = db.create_engine(db_url, echo=True)
+                self.metadata = db.MetaData(self.engine)
 
-        self.metadata.create_all()
+                self.inventory = db.Table(
+                    'inventory',
+                    self.metadata,
+                    db.Column('address', db.String(255), primary_key=True),
+                    db.Column('name', db.String(255), nullable=False),
+                    db.Column('device_type', db.String(255), nullable=False),
+                    db.Column('group', db.String(255), nullable=False),
+                )
+
+
+                self.metadata.create_all()
+                self.connect()
+                break
+            except:
+                if i == 9:
+                    raise
+                else:
+                    time.sleep(5)
+                    continue
+        self.disconnect()
 
     def connect(self):
         self.conn = self.engine.connect()
-        # if self.conn.closed:
-        #    raise OSError("Tried to connect to DB server but connection still closed.")
+        if self.conn.closed:
+            raise OSError("Tried to connect to DB server but connection still closed.")
 
     def disconnect(self):
         self.conn.close()
@@ -51,4 +65,3 @@ class DataBase:
     def delete(self, address):
         stmt = self.inventory.delete().where(self.inventory.c.address == address)
         self.conn.execute(stmt)
-

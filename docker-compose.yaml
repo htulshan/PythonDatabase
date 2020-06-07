@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  web:
+    depends_on:
+      - db
+    build:
+      context: "."
+      dockerfile: "app_dockerfile"
+    image: "ubuntu:custom"
+    environment:
+      FLASK_APP: inventory
+
+  db:
+    image: "mysql:latest"
+    command: "--default-authentication-plugin=mysql_native_password"
+    environment:
+      MYSQL_ROOT_PASSWORD: "mysql"
+      MYSQL_DATABASE: "inventory_db"
+
+  proxy:
+    depends_on:
+      - web
+    build:
+      context: "."
+      dockerfile: "nginx_dockerfile"
+    image: "nginx:custom"
+    ports:
+    - "80:80"

@@ -14,7 +14,7 @@ class Database:
         database should be used. Can be MySQL, sqlite, postgreSQL, etc.
         """
 
-        # Try to initialize the DB 10 times; docker-compose doesn't have
+        # Try to initialize the DB 10 times; app_dockerfile-compose doesn't have
         # a good built-in mechanism to sequence container startup
         for _ in range(10):
             try:

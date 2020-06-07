@@ -4,7 +4,7 @@
     Flask application to create an inventory file and maintain it.
 """
 
-from flask import Flask, render_template, request, redirect, url_for, abort, jsonify
+from flask import Flask, render_template, request, redirect, url_for, abort
 from sqlalchemy import exc
 from ipaddress import ip_address
 import csv
@@ -12,7 +12,7 @@ import csv
 from database import DataBase
 
 app = Flask(__name__)
-db = DataBase("mysql://root:mysql@localhost:3306/inventory_db")
+db = DataBase("mysql://root:mysql@db/inventory_db")
 
 
 class InvalidIPError(Exception):
