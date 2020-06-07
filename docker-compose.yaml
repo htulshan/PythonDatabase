@@ -8,8 +8,6 @@ services:
       context: "."
       dockerfile: "app_dockerfile"
     image: "ubuntu:custom"
-    environment:
-      FLASK_APP: inventory
 
   db:
     image: "mysql:latest"

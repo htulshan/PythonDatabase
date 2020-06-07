@@ -115,8 +115,9 @@ def del_device(address):
 
 @app.route('/inventory/device/<address>')
 def device(address):
-    data = dict(db.select_one(address))
-    if data:
+    result = db.select_one(address)
+    if result:
+        data = dict(result)
         return render_template('device_detail.html', data=data)
     else:
         abort(404)
